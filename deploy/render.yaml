@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: yournews
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd astro-theme && npm install && npm run build
+    startCommand: cd astro-theme && npm run preview
+    envVars:
+      - key: NODE_VERSION
+        value: "18"
+      - key: OPENAI_API_KEY
+        sync: false
+    healthCheckPath: /

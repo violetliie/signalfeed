@@ -1,0 +1,29 @@
+---
+export const prerender = false;
+import { getImage } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import AppLayout from '../layouts/AppLayout';
+import gradientBackground from '../assets/images/gradient-background-7680x4320-11027.jpg';
+
+const optimizedBackground = await getImage({
+  src: gradientBackground,
+  width: 3840,
+});
+---
+
+<Layout
+  title='SignalFeed - Your Personalized News Terminal'
+  description='Get personalized news in a beautiful terminal interface'
+  canonical='https://signalfeed.com'
+  openGraph={{
+    url: 'https://signalfeed.com',
+    title: 'SignalFeed - Your Personalized News Terminal',
+    description: 'Get personalized news in a beautiful terminal interface',
+    site_name: 'SignalFeed',
+  }}
+>
+  <AppLayout
+    client:load
+    backgroundUrl={optimizedBackground.src}
+  />
+</Layout>
